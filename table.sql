@@ -1,34 +1,33 @@
-
 DROP TABLE IF EXISTS title;
 DROP TABLE IF EXISTS ratevote;
-DROP TABLE IF EXISTS sambhog;
-DROP TABLE IF EXISTS crew;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS contacts;
 
-CREATE TABLE title(
+CREATE TABLE movie(
     title_id int NOT NULL PRIMARY KEY,
-    titlename VARCHAR(1000) ,
+    title_name VARCHAR(1000) ,
     isAdult int,
     release_year int
 );
-COPY person FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N');
+COPY movie FROM '/Users/anikhetmulky/Downloads/title.csv' WITH (FORMAT csv,null '\N');
 
 CREATE TABLE person (
     name_id int NOT NULL PRIMARY KEY,
     firstname VARCHAR(500) 
 );
 
-COPY person FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N');
+COPY person FROM '/Users/anikhetmulky/Downloads/person.csv' WITH (FORMAT csv,null '\N');
 
-CREATE TABLE role(
+CREATE TABLE person(
     title_id int,
     name_id int,
+    PRIMARY KEY (title_id, name_id)
     CONSTRAINT fk_title FOREIGN KEY (title_id) REFERENCES title (title_id) ON UPDATE CASCADE,
     CONSTRAINT fk_name FOREIGN KEY (name_id) REFERENCES person (name_id) ON UPDATE CASCADE,
     category VARCHAR(20)
     
 );
+COPY role FROM '/Users/anikhetmulky/Downloads/principals.csv' WITH (FORMAT csv,null '\N');
 
 CREATE TABLE ratevote(
     title_id int ,
@@ -36,5 +35,11 @@ CREATE TABLE ratevote(
     vote int
 
 );
-COPY ratevote FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N');
+CREATE TABLE Genre(
+    title_id int,
+    genre VARCHAR(100),
+    PRIMARY KEY (title_id)
+    CONSTRAINT fk_title FOREIGN KEY (title_id) REFERENCES title (title_id) ON UPDATE CASCADE
 
+);
+COPY ratevote FROM '/Users/anikhetmulky/Downloads/genre.csv' WITH (FORMAT csv,null '\N');
