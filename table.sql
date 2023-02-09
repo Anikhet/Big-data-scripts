@@ -12,13 +12,13 @@ CREATE TABLE title(
     isAdult int,
     release_year int
 );
-COPY person FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N')  ;
+COPY person FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N');
 
 CREATE TABLE person (
     name_id int NOT NULL PRIMARY KEY,
     firstname VARCHAR(500) 
-    
 );
+
 COPY person FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N');
 
 CREATE TABLE role(
@@ -36,12 +36,5 @@ CREATE TABLE ratevote(
     vote int
 
 );
-
-
-
-
-
-
-
-COPY ratevote FROM '/Users/anikhetmulky/Downloads/file_name.csv' WITH (FORMAT csv);
+COPY ratevote FROM '/Users/anikhetmulky/Downloads/filename.csv' WITH (FORMAT csv,null '\N');
 
