@@ -36,11 +36,14 @@ WHERE  NOT EXISTS (
 COPY people (title_id,name_id,role) FROM '/Users/anikhetmulky/Downloads/principals.csv' WITH (FORMAT csv,null '\N');
 
 CREATE TABLE ratevote(
-    title_id int ,
+    title_id int PRIMARY KEY,
     ratings real,
-    vote int
+    vote int,
+    CONSTRAINT fk_rate_id FOREIGN KEY (title_id) REFERENCES movie (title_id) ON UPDATE CASCADE
 
 );
+COPY ratevote FROM '/Users/anikhetmulky/Downloads/ratings.csv' WITH (FORMAT csv,null '\N');
+
 CREATE TABLE genre_table(
     genre_id int PRIMARY KEY,
     genre VARCHAR(20)
@@ -56,7 +59,7 @@ CREATE TABLE Genre(
     CONSTRAINT fk_title FOREIGN KEY (title_id) REFERENCES movie (title_id) ON UPDATE CASCADE
 
 );
-COPY genre FROM '/Users/anikhetmulky/Downloads/genre.csv' WITH (FORMAT csv,null '\N');
+COPY genre FROM '/Users/anikhetmulky/Downloads/genre_table.csv' WITH (FORMAT csv,null '\N');
 
 -- SELECT * FROM movie
 -- WHERE  NOT EXISTS (SELECT FROM people WHERE people.title_id = movie.title_id);
