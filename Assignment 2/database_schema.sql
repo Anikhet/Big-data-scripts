@@ -29,33 +29,43 @@ CREATE TABLE Member (
     birthYear int, 
     deathYear int
 );
-
-CREATE TABLE people(
-    id serial PRIMARY KEY,
-    title_id int,
-    name_id int,
-    job VARCHAR(20)
-    CONSTRAINT fk_title FOREIGN KEY (title_id) REFERENCES movie (title_id) ON UPDATE CASCADE,
-    CONSTRAINT fk_name FOREIGN KEY (name_id) REFERENCES person (name_id) ON UPDATE CASCADE,
+CREATE TABLE Title_Actor (
+    actor int,
+    title int
 );
-   
-CREATE TABLE reviews(
-    title_id int PRIMARY KEY,
-    ratings real,
-    vote int,
-    CONSTRAINT fk_rate_id FOREIGN KEY (title_id) REFERENCES movie (title_id) ON UPDATE CASCADE
+-- o actor FK Member(id)
+-- o title FK Title(id)
+CREATE TABLE Title_Writer (
+    writer,
+    title
 );
-
-
-
-CREATE TABLE Genre_table(
-    id serial PRIMARY KEY,
-    title_id int,
-    genre VARCHAR(20),
-    genre_id int,
-    CONSTRAINT fk_genre FOREIGN KEY (genre_id) REFERENCES genre (genre_id) ON UPDATE CASCADE,
-    CONSTRAINT fk_title FOREIGN KEY (title_id) REFERENCES movie (title_id) ON UPDATE CASCADE
+-- o writer FK Member(id)
+-- o title FK Title(id)
+CREATE TABLE Title_Director (
+    director, 
+    title
 );
+-- o director FK Member(id)
+-- o title FK Title(id)
+CREATE TABLE Title_Producer (
+    producer, 
+    title
+);
+-- o producer FK Member(id)
+-- o title FK Title(id)
+CREATE TABLE Character (
+    id, 
+    character
+);
+-- Note: this table should contain individual characters
+CREATE TABLE Actor_Title_Character (
+    actor, 
+    title, 
+    character
+);
+-- actor,title) FK Title_Actor (actor, title)
+-- o character FK Character(id)
+
 
 
 
