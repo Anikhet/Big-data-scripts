@@ -1,15 +1,3 @@
-CREATE TABLE title(
-    title_id int NOT NULL PRIMARY KEY,
-    title_type VARCHAR(20),
-    title VARCHAR(200),
-    originalTitle VARCHAR(200),
-    startYear int,
-    endYear int,
-    runtime, 
-    avgRating real,
-    numVotes int
-);
-
 CREATE TABLE Genre(
     genre_id int PRIMARY KEY,
     genre VARCHAR(20)
