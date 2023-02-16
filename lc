@@ -1,0 +1,24 @@
+-- class Solution:
+--     def productExceptSelf(self, nums: List[int]) -> List[int]:
+--         post = [nums[-1]] * len(nums)
+--         pre = [nums[0]]* len(nums)
+--         for x in range(1,len(nums)):
+--             pre[x] = pre[x - 1] * nums[x]
+--         for x in range(len(nums) - 2, -1, -1):
+--             post[x] = post[x + 1] * nums[x]
+        
+--         print(pre)
+--         print(post)
+        
+--         for x in range(len(nums)):
+--             temp = x - 1
+--             temp2 = x + 1
+--             if x - 1 < 1:
+--                 temp = pre[0]
+--                 print(pre[0])
+--             if x + 1 == len(nums):
+--                 temp2 = 1
+
+--             nums[x] = pre[temp] * post[temp2]
+            
+--         return nums
