@@ -93,3 +93,6 @@ CREATE TABLE Actor_Title_Character as (
 SELECT tconst,nconst,character.character_id from "title.principals"
 RIGHT JOIN character on character.character = "title.principals".characters
 );
+
+
+
